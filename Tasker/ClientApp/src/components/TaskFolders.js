@@ -30,12 +30,12 @@ const TaskFolders = () => {
                                                
                     <Nav>
                         <Col className="flex justify-center" xs="2">
-                            <p className="font-bold text-lg">Task Folders of: </p>
+                            <p className="font-bold text-lg p-1">Task Folders of: </p>
                         </Col>
                         <Col>
                             <NavItem>
                                 <NavLink
-                                    className={`flex justify-center px-4 py-2 rounded-t-lg ${activeTab === 'Employees' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'}`}
+                                    className={`hover:bg-gray-500 flex justify-center px-4 py-2 rounded-t-lg ${activeTab === 'Employees' ? 'bg-gray-700 text-white' : 'bg-gray-400 text-white'}`}
                                     onClick={() => handleTabClick('Employees')}
                                 >
                                     Employees
@@ -45,7 +45,7 @@ const TaskFolders = () => {
                         <Col>
                             <NavItem>
                                 <NavLink
-                                    className={`flex justify-center px-4 py-2 rounded-t-lg ${activeTab === 'Bosses' ? 'bg-gray-600 text-white' : 'bg-gray-400 text-white'}`}
+                                    className={`hover:bg-gray-500 flex justify-center px-4 py-2 rounded-t-lg ${activeTab === 'Bosses' ? 'bg-gray-700 text-white' : 'bg-gray-400 text-white'}`}
                                     onClick={() => handleTabClick('Bosses')}
                                 >
                                     Bosses
@@ -64,7 +64,7 @@ const TaskFolders = () => {
                                     {folders.map((item, index) => (
                                         <Col key={index} xs={12} sm={6} md={4} lg={3} className="flex justify-center">
                                             <div className="pb-4">
-                                            <button className="inline-flex items-center relative bg-zinc-100 px-4 h-9" title={item.ownerEmail}>
+                                                <button className="hover:scale-125 inline-flex items-center relative bg-zinc-100 px-4 h-9" title={item.ownerEmail}>
                                                 <div className="w-5 h-5 bg-orange-400"></div>
                                                 <div className="ml-2 text-black text-base font-light">{item.ownerName} </div>
                                                 </button>
