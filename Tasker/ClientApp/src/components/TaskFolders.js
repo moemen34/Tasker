@@ -76,7 +76,7 @@ const TaskFolders = () => {
                             </>
                         ) : (
                             <>LOADING...</>
-                            )}
+                        )}
 
 
                     </> : <> NO EMPLOYEES</>

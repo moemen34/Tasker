@@ -42,6 +42,9 @@ export class NavMenu extends Component {
                         <NavItem>
                             <NavLink tag={Link} className="text-dark" to="/task-folders">Task folders</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} className="text-dark" to="/admin">Admin</NavLink>
+                        </NavItem>
 
                     </ul>
                 </Collapse>

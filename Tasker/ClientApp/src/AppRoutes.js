@@ -2,6 +2,7 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import TaskFolders from "./components/TaskFolders";
+import Admin from "./components/Admin";
 
 const AppRoutes = [
   {
@@ -18,8 +19,12 @@ const AppRoutes = [
   },
   {
     path: '/task-folders',
-      element: <TaskFolders/>
-   }
+    element: <TaskFolders/>
+  },
+  {
+    path: '/admin',
+    element: <Admin />
+  }
 ];
 
 export default AppRoutes;
