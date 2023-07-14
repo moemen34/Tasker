@@ -1,0 +1,25 @@
+docker network create openfga
+87356e1977fd8f31663fcfeff283f3a7cbc729abcf0e9fd0d21935f7c457c27b
+
+PostgresMoemen
+
+docker run -d --name OpenFGA --network=openfga -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=PostgresMoemen postgres:14
+Unable to find image 'postgres:14' locally
+14: Pulling from library/postgres
+f03b40093957: Pull complete
+9d674c93414d: Pull complete
+de781e8e259a: Pull complete
+5ea6efaf51f6: Pull complete
+b078d5f4ac82: Pull complete
+97f84fb2a918: Pull complete
+5a6bf2f43fb8: Pull complete
+f1a40e88fea4: Pull complete
+e3826fb7af2a: Pull complete
+ff1099d10196: Pull complete
+67b873b24c5f: Pull complete
+6e3ab17f013c: Pull complete
+45f5f0ba2b88: Pull complete
+Digest: sha256:af8b776d4b97636bc4844075d4d6e93df1eed120d4817cafda9000de24f1bd8a
+Status: Downloaded newer image for postgres:14
+4ced0ffd243f42fa3d20e391bd0c823ce778282801c88bebc82f6af2b7b3e9be
+

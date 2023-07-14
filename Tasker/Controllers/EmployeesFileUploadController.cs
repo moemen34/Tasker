@@ -9,7 +9,7 @@ namespace Tasker.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FileUploadController : ControllerBase
+    public class EmployeesFileUploadController : ControllerBase
     {
         [HttpPost]
         public ActionResult Post([FromForm] FileModel fileModel)
