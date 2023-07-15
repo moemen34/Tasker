@@ -22,15 +22,31 @@ namespace Tasker.Controllers
 
         };
 
-        [HttpGet("{employeeId:int}")]
-        public async Task<List<TaskFolder>> GetAsync(int employeeId)
+        //[HttpGet("{employeeId:int}")]
+        [HttpGet]
+        public async Task<List<TaskFolder>> GetAsync(int employeeId, int relation)
         //public async Task<ListObjectsResponse> GetAsync(int employeeId)
         {
+
+
+            ////////////////////////
+            ///
+            //Console.WriteLine(employeeId + " " + relation);
+            //return Folders;
+            //////////////////////////////
+
+
+            
             List<TaskFolder> folders = new List<TaskFolder>();
 
             var fgaClient = CreateStoreClient("01H1AM5QQYN9VZTJ8MNW2HXAJV");
 
-            ListObjectsResponse response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "supervisor_plus", "employee");
+            ListObjectsResponse response = new ListObjectsResponse();
+
+            if (relation == 1)
+                response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "supervisor_plus", "employee");
+            else if(relation == 2)
+                response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "assistant", "employee");
 
             if (response.Objects != null)
             {

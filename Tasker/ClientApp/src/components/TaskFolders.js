@@ -4,18 +4,22 @@ import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 const TaskFolders = () => {
 
     const [folders, setFolders] = useState([]);
-    const employeeId = 7; //get from login
+    const employeeId = 8; //get from login
     const [activeTab, setActiveTab] = useState('Employees');
+    //const relation = 1;
 
     useEffect(() => {
-        fetch(`api/TaskFolder/${employeeId}`)
+        //const relation;
+        //activeTab === "Employees" ? (relation = 1) : (relation = 2)
+        //fetch(`api/TaskTolder?employeeId=${employeeId}&relation=1`) //https://localhost:7293/api/taskfolder?employeeId=1&relation=1
+        fetch(`api/TaskFolder?employeeId=${employeeId}&relation=${activeTab === "Employees" ? (1) : (2)}`)
             .then((results) => {
                 return results.json();
             })
             .then(data => {
                 setFolders(data);
             })
-    }, [])
+    }, [activeTab])
 
 
     const handleTabClick = (tab) => {
@@ -55,7 +59,7 @@ const TaskFolders = () => {
                         </Nav>            
                 </Row>
 
-                {activeTab === "Employees" ?
+                {/*{ activeTab === "Employees" ?*/}
                     <>
 
                         {folders != null ? (
@@ -79,8 +83,7 @@ const TaskFolders = () => {
                         )}
 
 
-                    </> : <> NO EMPLOYEES</>
-                }
+                </> { /*: <> NO EMPLOYEES</>}*/}
 
             </Container>
 
