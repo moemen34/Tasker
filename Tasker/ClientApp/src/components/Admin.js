@@ -32,10 +32,17 @@ const Admin = () => {
             // Perform upload operation
             //console.log('Selected file:', selectedFile);
 
-            await axios.post('https://localhost:7293/api/employeesfileupload/', formData).then((response) => {
-                console.log(response);
-            });
-
+            
+                activeTab === "Add Employees" ? (
+                    await axios.post('https://localhost:7293/api/employeesfileupload/', formData).then((response) => {
+                        console.log(response);
+                    })
+                )
+                : (
+                        await axios.post('https://localhost:7293/api/RelationsFileUpload/', formData).then((response) => {
+                        console.log(response);
+                    })
+                )
 
             // Reset selected file
             setSelectedFile(null);
@@ -80,10 +87,10 @@ const Admin = () => {
                 </Row>
 
 
-                {activeTab === "Add Employees" ?
-
-                    <div className="flex items-center justify-center">
-                        <div>Ulpoad excel sheet with Employees information:</div>
+                <div className="flex items-center justify-center">
+                    {activeTab === "Add Employees" ? (<div>Ulpoad excel sheet with Employees information:</div>)
+                        : (<div>Ulpoad excel sheet with Employee relations:</div>)
+                    }
                         
                         <label className="relative flex flex-col items-center px-4 py-6 bg-white rounded-lg shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
 
@@ -129,8 +136,8 @@ const Admin = () => {
                         }
                     </div>
 
-                    : <></>
-                }
+                    
+                
 
 
 
