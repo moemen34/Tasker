@@ -8,8 +8,8 @@ namespace Tasker.OpenFGA
 {
     public class FGAMethods
     {
-        public static string AuthorizationModelId = "01H5B0VND3034JA8BJP4GBMWH7";
-        public static string StoreId = "01H1AM5QQYN9VZTJ8MNW2HXAJV";
+        public static string AuthorizationModelId = "01H5T4C03KQDC7YR67C8F3VAQC";//"01H5B0VND3034JA8BJP4GBMWH7";
+        public static string StoreId = "01H1AM5QQYN9VZTJ8MNW2HXAJV";//https://localhost:7293/api/canviewtask?employeeId=2
         public static OpenFgaApi CreateStoreClient(/*String StoreId*/)
         {
             var configuration = new Configuration()

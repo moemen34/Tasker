@@ -3,19 +3,20 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import TaskFolders from "./components/TaskFolders";
 import Admin from "./components/Admin";
+import TasksToView from "./components/TasksToView";
 
 const AppRoutes = [
   {
     index: true,
-    element: <Home />
+    element: <Home/>
   },
   {
     path: '/counter',
-    element: <Counter />
+    element: <Counter/>
   },
   {
     path: '/fetch-data',
-    element: <FetchData />
+    element: <FetchData/>
   },
   {
     path: '/task-folders',
@@ -24,6 +25,10 @@ const AppRoutes = [
   {
     path: '/admin',
     element: <Admin />
+  },
+  {
+    path: '/view-tasks',
+    element: <TasksToView/>
   }
 ];
 

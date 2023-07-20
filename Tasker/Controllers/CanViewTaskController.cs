@@ -6,6 +6,7 @@ using OpenFga.Sdk.Configuration;
 using OpenFga.Sdk.Model;
 using Tasker.Models;
 using Tasker.OpenFGA;
+using Tasker.Postgres;
 
 namespace Tasker.Controllers
 {
@@ -17,19 +18,19 @@ namespace Tasker.Controllers
 
         //[HttpGet("{employeeId:int}")]
         [HttpGet]
-        public async Task<List<TaskFolder>> GetAsync(int employeeId)
+        public async Task<List<TaskModel>> GetAsync(int employeeId)
         //public async Task<ListObjectsResponse> GetAsync(int employeeId)
         {
 
-            List<TaskFolder> folders = new List<TaskFolder>();
+            List<TaskModel> Tasks = new List<TaskModel>();
 
             var fgaClient = FGAMethods.CreateStoreClient();
 
-            ListObjectsResponse response = new ListObjectsResponse();
+           // ListObjectsResponse response = new ListObjectsResponse();
 
             //use enum instead of 1 and 2
             //if (relation == 1)
-            response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "supervisor_plus", "employee");
+            ListObjectsResponse response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "can_view", "task");
             //else if (relation == 2)
             //response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "assistant", "employee");
 
@@ -37,24 +38,55 @@ namespace Tasker.Controllers
             {
                 for (int i = 0; i < response.Objects.Count; i++)
                 {
-                    string? employee = response.Objects[i];
+                    string? task = response.Objects[i];
 
-                    string ID = employee.Split(':')[1];
+                    string ID = task.Split(':')[1];
 
-                    //folders.Add(GetTaskFolder(ID));
+                    Tasks.Add(GetTask(int.Parse(ID)));
 
                 }
-
-                /*foreach (var folder in folders)
-                {
-                    Console.WriteLine(folder.OwnerId + " " + folder.OwnerName + " " + folder.OwnerEmail);
-                }*/
-
             }
-            return folders;
+            return Tasks;
+        }
 
+        public static TaskModel? GetTask(int taskID)
+        {
+            TaskModel task = new TaskModel();
+
+            NpgsqlCommand command;
+            NpgsqlDataReader reader;
+            string query;
+            
+            using (NpgsqlConnection con = PostgreSQL.GetConnection())
+            {
+                query = $"SELECT first_name, last_name, task_title, complete, assigned_on, due_date FROM task join employee on assigner = employee_id WHERE task_id = {taskID};";
+                command = new NpgsqlCommand(@query, con);
+                con.Open();
+
+                reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    if (reader.Read()) //while to read multiple
+                    {
+                        //read the data and create a TaskFolder object
+                        TaskModel TaskMod = new TaskModel();
+
+                        TaskMod.Assigner = (string)reader["first_name"] + " " + (string)reader["last_name"];
+                        TaskMod.TaskTitle = (string)reader["task_title"];
+                        TaskMod.Complete = (bool)reader["complete"];
+                        TaskMod.AssignedOn = (DateTime)reader["assigned_on"];
+                        TaskMod.DueOn = (DateTime)reader["due_date"];
+
+                        reader.Close();
+                        con.Close();
+
+                        return TaskMod;
+                    }
+                }
+                return null;
+            }
         }
 
     }
-
 }
