@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tasker.Models;
+using Tasker.OpenFGA;
 using OpenFga.Sdk.Api;
 using OpenFga.Sdk.Configuration;
 using OpenFga.Sdk.Model;
@@ -39,14 +40,15 @@ namespace Tasker.Controllers
             
             List<TaskFolder> folders = new List<TaskFolder>();
 
-            var fgaClient = CreateStoreClient("01H1AM5QQYN9VZTJ8MNW2HXAJV");
+            var fgaClient = FGAMethods.CreateStoreClient();
 
             ListObjectsResponse response = new ListObjectsResponse();
 
+            //use enum instead of 1 and 2
             if (relation == 1)
-                response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "supervisor_plus", "employee");
+                response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "supervisor_plus", "employee");
             else if(relation == 2)
-                response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "assistant", "employee");
+                response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "assistant", "employee");
 
             if (response.Objects != null)
             {
@@ -119,53 +121,6 @@ namespace Tasker.Controllers
             //string connectionString = "Server=localhost;Port=5432;Database=TaskerDB;User Id=postgres;Password=PostgresMoemen";
             return new NpgsqlConnection(@connectionString);
         }
-
-
-
-
-        /// <summary>
-        /// Method that Sets up a Client for an OpenFGA store
-        /// </summary>
-        /// <param name="StoreId"></param>
-        /// <returns></returns>
-        static OpenFgaApi CreateStoreClient(String StoreId)
-        {
-            var configuration = new Configuration()
-            {
-                ApiScheme = "http",
-                ApiHost = "localhost:8080",
-                StoreId = StoreId
-            };
-            var fgaClient = new OpenFgaApi(configuration);
-
-            return fgaClient;
-        }
-
-
-        /// <summary>
-        /// Method that performs a List check
-        /// </summary>
-        /// <param name="fgaClient"></param>
-        /// <param name="AuthorizationModelId"></param>
-        /// <param name="tupleUser"></param>
-        /// <param name="tupleRelation"></param>
-        /// <param name="objectType"></param>
-        /// <returns>returns all objects with a specified relationship to a specified user</returns>
-        static async Task<ListObjectsResponse> ListCheck(OpenFgaApi fgaClient, String AuthorizationModelId, String tupleUser, String tupleRelation, String objectType)
-        {
-            var body = new ListObjectsRequest
-            {
-                AuthorizationModelId = AuthorizationModelId,
-                User = tupleUser,
-                Relation = tupleRelation,
-                Type = objectType,
-            };
-            var response = await fgaClient.ListObjects(body);
-
-            return response;
-        }
-
-
 
     }
 }

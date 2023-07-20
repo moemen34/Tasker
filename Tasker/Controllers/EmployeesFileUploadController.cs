@@ -4,6 +4,8 @@ using OfficeOpenXml;
 using System.IO;
 using Tasker.Models;
 using DotNetEnv;
+using Tasker.OpenFGA;
+using Tasker.Postgres;
 
 namespace Tasker.Controllers
 {
@@ -75,6 +77,9 @@ namespace Tasker.Controllers
                         sheet.Cells[i, sheet.Dimension.Start.Column + 3].Value.ToString(),
                         sheet.Cells[i, sheet.Dimension.Start.Column + 4].Value.ToString());
 
+
+                    //await FGAMethods.AddRelationAsync(, ,);
+
                     Console.WriteLine("record sent to insert");
 
                 }
@@ -82,17 +87,17 @@ namespace Tasker.Controllers
         }
 
 
-        public static bool InsertEmployee(string first_name, string last_name, string email, string phone, string password)
+        public static async Task<bool> InsertEmployee(string first_name, string last_name, string email, string phone, string password)
         {
 
-            using (NpgsqlConnection con = GetConnection())
+            using (NpgsqlConnection con = PostgreSQL.GetConnection())
             {
                 con.Open();
                 if (con.State == System.Data.ConnectionState.Open)
                 {
                     Console.WriteLine("Connected");
 
-                    string SQL = "insert into employee(first_name,last_name,email,phone,password) values(:first_name,:last_name,:email,:phone,:password)";
+                    string SQL = "insert into employee(first_name,last_name,email,phone,password) values(:first_name,:last_name,:email,:phone,:password) RETURNING employee_id";
                     NpgsqlCommand cmd = new NpgsqlCommand(SQL);
                     cmd.Connection = con;
 
@@ -116,8 +121,12 @@ namespace Tasker.Controllers
 
                     try
                     {
-                        n = cmd.ExecuteNonQuery();
+                        n = Convert.ToInt32(cmd.ExecuteScalar());
                         Console.WriteLine("NOT FAIL");
+
+                        await FGAMethods.AddRelationAsync("employee:"+n, "task_folder:" + n , "owner");
+
+
                     }
                     catch (PostgresException pgE)
                     {
@@ -139,7 +148,7 @@ namespace Tasker.Controllers
 
 
 
-        private static NpgsqlConnection GetConnection()
+        /*private static NpgsqlConnection GetConnection()
         {
             Env.TraversePath().Load();
             string? DB_HOST = Environment.GetEnvironmentVariable("HOST");
@@ -150,7 +159,7 @@ namespace Tasker.Controllers
             string connectionString = "Server=" + DB_HOST + ";Port=" + DB_PORT + ";Database=" + DB_NAME + ";User Id=" + DB_USERNAME + ";Password=" + DB_PASSWORD;
             //string connectionString = "Server=localhost;Port=5432;Database=TaskerDB;User Id=postgres;Password=PostgresMoemen";
             return new NpgsqlConnection(@connectionString);
-        }
+        }*/
 
 
     }

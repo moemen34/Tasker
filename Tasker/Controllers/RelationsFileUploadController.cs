@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using Tasker.Models;
-using OpenFga.Sdk.Api;
-using OpenFga.Sdk.Configuration;
-using OpenFga.Sdk.Model;
-using ConsoleApp1;
+using Tasker.OpenFGA;
+
 
 namespace Tasker.Controllers
 {
@@ -60,57 +58,13 @@ namespace Tasker.Controllers
                         sheet.Cells[i, sheet.Dimension.Start.Column + 3].Value.ToString(),
                         sheet.Cells[i, sheet.Dimension.Start.Column + 4].Value.ToString());*/
 
-                    await AddRelationAsync(sheet.Cells[i, sheet.Dimension.Start.Column].Value.ToString(),
-                        sheet.Cells[i, sheet.Dimension.Start.Column + 1].Value.ToString(),
+                    await FGAMethods.AddRelationAsync("employee:" + sheet.Cells[i, sheet.Dimension.Start.Column].Value.ToString(),
+                        "employee:" + sheet.Cells[i, sheet.Dimension.Start.Column + 1].Value.ToString(),
                         sheet.Cells[i, sheet.Dimension.Start.Column + 2].Value.ToString().ToLower());
 
                     Console.WriteLine("record sent to insert");
 
                 }
-            }
-        }
-
-
-        public static async Task<FgaTaskResult> AddRelationAsync(string sourceID, string destinationID, string relation)
-        {
-            var fgaClient = CreateStoreClient("01H1AM5QQYN9VZTJ8MNW2HXAJV");
-
-            FgaTaskResult addResult = await AddNewRelationshipTuple(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + sourceID, relation, "employee:" + destinationID);
-
-
-            return addResult;
-        }
-
-        static OpenFgaApi CreateStoreClient(String StoreId)
-        {
-            var configuration = new Configuration()
-            {
-                ApiScheme = "http",
-                ApiHost = "localhost:8080",
-                StoreId = StoreId
-            };
-            var fgaClient = new OpenFgaApi(configuration);
-
-            return fgaClient;
-        }
-
-        static async Task<FgaTaskResult> AddNewRelationshipTuple(OpenFgaApi fgaClient, string AuthorizationModelId, string tupleUser, string tupleRelation, string tupleObject)
-        {
-            try
-            {
-                Console.WriteLine(tupleUser + " "+ tupleRelation + " "+ tupleObject);
-                var response = await fgaClient.Write(new WriteRequest
-                {
-                    Writes = new TupleKeys(new List<TupleKey>() {
-                    new() { User = tupleUser, Relation = tupleRelation, Object = tupleObject}
-                }),
-                    AuthorizationModelId = AuthorizationModelId
-                });
-                return new FgaTaskResult() { Status = true };//"Success";
-
-            }
-            catch (Exception ex) { 
-                return new FgaTaskResult() { Status = false, Message = ex.Message }; 
             }
         }
 
