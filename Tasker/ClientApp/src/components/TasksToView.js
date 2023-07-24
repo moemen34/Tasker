@@ -12,7 +12,7 @@ const TaskFolders = () => {
     
     //const relation = 1;
 
-    /*useEffect(() => {
+    useEffect(() => {
 
         fetch(`api/CanViewTask?employeeId=${employeeId}`)
             .then((results) => {
@@ -23,7 +23,7 @@ const TaskFolders = () => {
                 console.log(data);
             })
             
-    }, []);*/
+    }, []);
 
     const [showModal, setShowModal] = useState(false);
 

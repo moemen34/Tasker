@@ -49,6 +49,8 @@ namespace Tasker.Controllers
                 response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "supervisor_plus", "employee");
             else if(relation == 2)
                 response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "assistant", "employee");
+            else if(relation == 3)
+                response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "can_assign", "task_folder");
 
             if (response.Objects != null)
             {
