@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { Table } from 'reactstrap';
+import NewTask from '../Modals/NewTask';
+
+
 
 const TaskFolders = () => {
 
@@ -9,7 +12,7 @@ const TaskFolders = () => {
     
     //const relation = 1;
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         fetch(`api/CanViewTask?employeeId=${employeeId}`)
             .then((results) => {
@@ -20,11 +23,29 @@ const TaskFolders = () => {
                 console.log(data);
             })
             
-    }, []);
+    }, []);*/
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        console.log(showModal);
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
 
     return (
         <>
+
+            <div>
+                <button className="ml-4 px-4 py-2 text-white bg-orange-600 rounded-lg hover:bg-orange-700" onClick={handleOpenModal}>New Task</button>
+                {showModal ? <NewTask onClose={handleCloseModal} /> : <></>}
+            </div>
+
+
             {<div className="container mt-5">
                 <Table striped bordered responsive className="table table-bordered">
                     <thead className="bg-gray-200">
