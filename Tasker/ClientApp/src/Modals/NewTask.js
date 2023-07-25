@@ -7,7 +7,7 @@ const NewTask = ({ onClose }) => {
 
 
     const [selectedItems, setSelectedItems] = useState([]);
-    const employeeId = 6;
+    const employeeId = 10;
 
     const [folders, setFolders] = useState([]);
 
@@ -98,6 +98,7 @@ const NewTask = ({ onClose }) => {
             const requestBody = {
                 Assignees: selectedOwnerIds.map((item) => `'${item}'`),//wrap items in quotes ['12', '13', '14', '15'],
                 AssignerID: employeeId,
+                TaskTitle: taskTitle,
                 DueDate: date
             };
 
