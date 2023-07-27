@@ -1,8 +1,5 @@
-﻿using DotNetEnv;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Npgsql;
-using OpenFga.Sdk.Api;
-using OpenFga.Sdk.Configuration;
 using OpenFga.Sdk.Model;
 using Tasker.Models;
 using Tasker.OpenFGA;
@@ -10,29 +7,22 @@ using Tasker.Postgres;
 
 namespace Tasker.Controllers
 {
+    /// <summary>
+    /// Method that accepts a get request with an employeeID and returns a list of tasks
+    /// the user is allowed to view
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class CanViewTaskController : ControllerBase
     {
-
-
-        //[HttpGet("{employeeId:int}")]
         [HttpGet]
         public async Task<List<TaskModel>> GetAsync(int employeeId)
-        //public async Task<ListObjectsResponse> GetAsync(int employeeId)
         {
 
             List<TaskModel> Tasks = new List<TaskModel>();
 
             var fgaClient = FGAMethods.CreateStoreClient();
-
-           // ListObjectsResponse response = new ListObjectsResponse();
-
-            //use enum instead of 1 and 2
-            //if (relation == 1)
             ListObjectsResponse response = await FGAMethods.ListCheck(fgaClient, "employee:" + employeeId, "can_view", "task");
-            //else if (relation == 2)
-            //response = await ListCheck(fgaClient, "01H5B0VND3034JA8BJP4GBMWH7", "employee:" + employeeId, "assistant", "employee");
 
             if (response.Objects != null)
             {
@@ -49,6 +39,11 @@ namespace Tasker.Controllers
             return Tasks;
         }
 
+        /// <summary>
+        /// Method that returns a task model retrieved from the database
+        /// </summary>
+        /// <param name="taskID"></param>
+        /// <returns></returns>
         public static TaskModel? GetTask(int taskID)
         {
             TaskModel task = new TaskModel();

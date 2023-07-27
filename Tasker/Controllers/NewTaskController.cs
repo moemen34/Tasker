@@ -12,24 +12,16 @@ namespace Tasker.Controllers
     [Route("api/[controller]")]
     public class NewTaskController : ControllerBase
     {
+        /// <summary>
+        /// Post request that accepts a NewTask and processes it
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
         [HttpPost]
-        public /*ActionResult*/ string[] Post(NewTask task)
+        public string[] Post(NewTask task)
         {
-            //Console.WriteLine("gggggggggggg");
             try
             {
-                //store in database:
-                //task and
-
-
-                //task_info
-
-
-                //add edges to openFGA
-                //task:id       assigner          employee:id
-                //task:id       parentFolder      taskFolder:assignee
-
-
                 foreach (var Assignee in task.Assignees)
                 {
                     Console.WriteLine(Assignee);
@@ -38,23 +30,26 @@ namespace Tasker.Controllers
                 Console.WriteLine(task.DueDate);
                 Console.WriteLine(task.AssignerID);
 
-
-
                 InsertTask(task.AssignerID, task.TaskTitle, task.DueDate, task.Assignees);
 
-
-
-                return task.Assignees;//StatusCode(StatusCodes.Status202Accepted);
+                return task.Assignees;
             }
             catch (Exception)
             {
-                return task.Assignees;//StatusCode(StatusCodes.Status500InternalServerError);
+                return task.Assignees;
             }
 
         }
 
 
-
+        /// <summary>
+        /// Method that inserts a task into the database and adds corresponding relations to OpenFGA
+        /// </summary>
+        /// <param name="assigner"></param>
+        /// <param name="taskTitle"></param>
+        /// <param name="dueDate"></param>
+        /// <param name="assignees"></param>
+        /// <returns></returns>
         public static async Task<bool> InsertTask(int assigner, string taskTitle, DateTime dueDate, string[] assignees)
         {
 
@@ -82,9 +77,7 @@ namespace Tasker.Controllers
                     cmd.Parameters[3].Value = dueDate;
 
 
-
                     int n;
-
 
                     try
                     {
@@ -111,12 +104,15 @@ namespace Tasker.Controllers
                     Console.WriteLine("NOPE");
                 }
             }
-
-
             return false;
         }
 
-
+        /// <summary>
+        /// Method that inserts task info into the task info database and adds corresponding relations to OpenFGA
+        /// </summary>
+        /// <param name="taskID"></param>
+        /// <param name="assignees"></param>
+        /// <returns></returns>
         public static async Task<bool> InsertTaskInfo(int taskID, string[] assignees)
         {
 
@@ -155,11 +151,7 @@ namespace Tasker.Controllers
                         {
                             n = cmd.ExecuteNonQuery();
                             Console.WriteLine("NOT FAIL");
-
-                            //foreach (string assignee in assignees)
-                            //{
                             await FGAMethods.AddRelationAsync("task_folder:" + ThisAssignee, "task:" + taskID, "parent_folder");
-                            //}
 
                         }
                         catch (PostgresException pgE)

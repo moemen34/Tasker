@@ -104,10 +104,8 @@ const NewTask = ({ onClose }) => {
 
             const response = await axios.post(url, requestBody);
 
-            // Handle the response data here if needed
             console.log('Response:', response.data);
         } catch (error) {
-            // Handle errors here
             console.error('Error:', error);
         }
 
@@ -118,10 +116,6 @@ const NewTask = ({ onClose }) => {
     }
 
 
-
-
-
-    ////////////////////overflow-y-auto
     return (
         <div>
             <>

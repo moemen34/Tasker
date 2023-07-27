@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { Table } from 'reactstrap';
 import NewTask from '../Modals/NewTask';
 
@@ -10,7 +9,6 @@ const TaskFolders = () => {
     const [tasks, setTasks] = useState([]);
     const employeeId = 10; //get from login
     
-    //const relation = 1;
 
     useEffect(() => {
 

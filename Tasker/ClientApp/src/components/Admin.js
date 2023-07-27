@@ -11,7 +11,6 @@ const Admin = () => {
         setActiveTab(tab);
     };
 
-    /////////
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -29,20 +28,17 @@ const Admin = () => {
         formData.append("FileName", selectedFile.name);
         formData.append("file", selectedFile);
         if (selectedFile) {
-            // Perform upload operation
-            //console.log('Selected file:', selectedFile);
 
-            
-                activeTab === "Add Employees" ? (
-                    await axios.post('https://localhost:7293/api/employeesfileupload/', formData).then((response) => {
-                        console.log(response);
-                    })
-                )
-                : (
-                        await axios.post('https://localhost:7293/api/RelationsFileUpload/', formData).then((response) => {
-                        console.log(response);
-                    })
-                )
+            activeTab === "Add Employees" ? (
+                await axios.post('https://localhost:7293/api/employeesfileupload/', formData).then((response) => {
+                    console.log(response);
+                })
+            )
+            : (
+                    await axios.post('https://localhost:7293/api/RelationsFileUpload/', formData).then((response) => {
+                    console.log(response);
+                })
+            )
 
             // Reset selected file
             setSelectedFile(null);
@@ -51,7 +47,6 @@ const Admin = () => {
         }
     };
 
-    /////////
 
     return (
         <div>
@@ -135,10 +130,6 @@ const Admin = () => {
                         ) : (<></>)
                         }
                     </div>
-
-                    
-                
-
 
 
             </Container>

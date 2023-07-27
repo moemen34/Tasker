@@ -23,21 +23,18 @@ namespace Tasker.Controllers
 
         };
 
-        //[HttpGet("{employeeId:int}")]
+        /// <summary>
+        /// Get Request that receives an employee id and requested relation type and performs an OpenFGA list check
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <param name="relation">if 1 => returns supervisor_plus list check, 
+        ///                           2 => returns assistant list check,
+        ///                           3 => returns can_assign list check</param>
+        /// <returns>r</returns>
         [HttpGet]
         public async Task<List<TaskFolder>> GetAsync(int employeeId, int relation)
-        //public async Task<ListObjectsResponse> GetAsync(int employeeId)
         {
-
-
-            ////////////////////////
-            ///
-            //Console.WriteLine(employeeId + " " + relation);
-            //return Folders;
-            //////////////////////////////
-
-
-            
+           
             List<TaskFolder> folders = new List<TaskFolder>();
 
             var fgaClient = FGAMethods.CreateStoreClient();
@@ -63,11 +60,6 @@ namespace Tasker.Controllers
                     folders.Add(GetTaskFolder(ID));
 
                 }
-
-                /*foreach (var folder in folders)
-                {
-                    Console.WriteLine(folder.OwnerId + " " + folder.OwnerName + " " + folder.OwnerEmail);
-                }*/
 
             }
             return folders;
@@ -120,7 +112,6 @@ namespace Tasker.Controllers
             string? DB_USERNAME = Environment.GetEnvironmentVariable("USERNAME");
             string? DB_PASSWORD = Environment.GetEnvironmentVariable("PASSWORD");
             string connectionString = "Server=" + DB_HOST + ";Port=" + DB_PORT + ";Database=" + DB_NAME + ";User Id=" + DB_USERNAME + ";Password=" + DB_PASSWORD;
-            //string connectionString = "Server=localhost;Port=5432;Database=TaskerDB;User Id=postgres;Password=PostgresMoemen";
             return new NpgsqlConnection(@connectionString);
         }
 

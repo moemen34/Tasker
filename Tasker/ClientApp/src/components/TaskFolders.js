@@ -6,12 +6,8 @@ const TaskFolders = () => {
     const [folders, setFolders] = useState([]);
     const employeeId = 10; //get from login
     const [activeTab, setActiveTab] = useState('Employees');
-    //const relation = 1;
 
     useEffect(() => {
-        //const relation;
-        //activeTab === "Employees" ? (relation = 1) : (relation = 2)
-        //fetch(`api/TaskTolder?employeeId=${employeeId}&relation=1`) //https://localhost:7293/api/taskfolder?employeeId=1&relation=1
         fetch(`api/TaskFolder?employeeId=${employeeId}&relation=${activeTab === "Employees" ? (1) : (2)}`)
             .then((results) => {
                 return results.json();

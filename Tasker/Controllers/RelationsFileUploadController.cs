@@ -10,6 +10,11 @@ namespace Tasker.Controllers
     [Route("api/[controller]")]
     public class RelationsFileUploadController : ControllerBase
     {
+        /// <summary>
+        /// Post request that accepts a excel file with employee relations and processes it
+        /// </summary>
+        /// <param name="fileModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromForm] FileModel fileModel)
         {
@@ -30,6 +35,10 @@ namespace Tasker.Controllers
         }
 
 
+        /// <summary>
+        /// Method that processes the contents of the excel file and adds corresponding relations to OpenFGA
+        /// </summary>
+        /// <param name="stream"></param>
         public static async void ProcessRelations(MemoryStream stream)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -51,12 +60,6 @@ namespace Tasker.Controllers
                     }
 
                     Console.WriteLine("reading record");
-
-                    /*InsertEmployee(sheet.Cells[i, sheet.Dimension.Start.Column].Value.ToString(),
-                        sheet.Cells[i, sheet.Dimension.Start.Column + 1].Value.ToString(),
-                        sheet.Cells[i, sheet.Dimension.Start.Column + 2].Value.ToString(),
-                        sheet.Cells[i, sheet.Dimension.Start.Column + 3].Value.ToString(),
-                        sheet.Cells[i, sheet.Dimension.Start.Column + 4].Value.ToString());*/
 
                     await FGAMethods.AddRelationAsync("employee:" + sheet.Cells[i, sheet.Dimension.Start.Column].Value.ToString(),
                         "employee:" + sheet.Cells[i, sheet.Dimension.Start.Column + 1].Value.ToString(),

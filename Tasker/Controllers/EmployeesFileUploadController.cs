@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using OfficeOpenXml;
-using System.IO;
 using Tasker.Models;
-using DotNetEnv;
 using Tasker.OpenFGA;
 using Tasker.Postgres;
 
@@ -13,21 +11,18 @@ namespace Tasker.Controllers
     [Route("api/[controller]")]
     public class EmployeesFileUploadController : ControllerBase
     {
+        /// <summary>
+        /// Post request that accepts an excel file with employees information
+        /// </summary>
+        /// <param name="fileModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromForm] FileModel fileModel)
         {
-            //Console.WriteLine("gggggggggggg");
             try
             {
                 MemoryStream stream = new MemoryStream();
                 fileModel.File.CopyTo(stream);
-
-                //Console.WriteLine(fileModel.FileName + "   " + stream.ToArray());
-
-                /*foreach(var item in stream.ToArray())
-                {
-                    Console.WriteLine(item + " ");
-                }*/
 
                 ProcessEmployees(stream);
 
@@ -40,7 +35,11 @@ namespace Tasker.Controllers
             
         }
 
-
+        /// <summary>
+        /// Method that accepts an excel file as a memory stream and processes it's cells
+        /// in order to collect data
+        /// </summary>
+        /// <param name="stream"></param>
         public static void ProcessEmployees(MemoryStream stream)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -48,26 +47,12 @@ namespace Tasker.Controllers
             using (ExcelPackage package = new ExcelPackage(ms))
             {
 
-                /*foreach (var line in package.Workbook.Worksheets)
-                {
-                    Console.WriteLine("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" + line);
-                }*/
                 //get the first sheet from the excel file
                 ExcelWorksheet sheet = package.Workbook.Worksheets[0];
-
-                //sheet.Cells[0, 0].Value.ToString();
-
 
                 //loop all rows in the sheet
                 for (int i = sheet.Dimension.Start.Row; i <= sheet.Dimension.End.Row; i++)
                 {
-                    //loop all columns in a row
-                    /*for (int j = sheet.Dimension.Start.Column; j <= sheet.Dimension.End.Column; j++)
-                    {
-                        //do something with the current cell value
-                        string currentCellValue = sheet.Cells[i, j].Value.ToString();
-                        Console.WriteLine(currentCellValue);
-                    }*/
 
                     Console.WriteLine("reading record");
 
@@ -78,15 +63,21 @@ namespace Tasker.Controllers
                         sheet.Cells[i, sheet.Dimension.Start.Column + 4].Value.ToString());
 
 
-                    //await FGAMethods.AddRelationAsync(, ,);
-
                     Console.WriteLine("record sent to insert");
 
                 }
             }
         }
 
-
+        /// <summary>
+        /// Method that inserts an employee into the database
+        /// </summary>
+        /// <param name="first_name"></param>
+        /// <param name="last_name"></param>
+        /// <param name="email"></param>
+        /// <param name="phone"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static async Task<bool> InsertEmployee(string first_name, string last_name, string email, string phone, string password)
         {
 
@@ -145,22 +136,6 @@ namespace Tasker.Controllers
 
             return false;
         }
-
-
-
-        /*private static NpgsqlConnection GetConnection()
-        {
-            Env.TraversePath().Load();
-            string? DB_HOST = Environment.GetEnvironmentVariable("HOST");
-            string? DB_PORT = Environment.GetEnvironmentVariable("PORT");
-            string? DB_NAME = Environment.GetEnvironmentVariable("DATABASE");
-            string? DB_USERNAME = Environment.GetEnvironmentVariable("USERNAME");
-            string? DB_PASSWORD = Environment.GetEnvironmentVariable("PASSWORD");
-            string connectionString = "Server=" + DB_HOST + ";Port=" + DB_PORT + ";Database=" + DB_NAME + ";User Id=" + DB_USERNAME + ";Password=" + DB_PASSWORD;
-            //string connectionString = "Server=localhost;Port=5432;Database=TaskerDB;User Id=postgres;Password=PostgresMoemen";
-            return new NpgsqlConnection(@connectionString);
-        }*/
-
 
     }
 }
