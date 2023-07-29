@@ -43,10 +43,3 @@ Create Table notification(
     viewed BOOLEAN,
     FOREIGN KEY (employee_id) REFERENCES employee (employee_id) on delete cascade
 );
-
-
-
-Create Table chat(
-
-)
-
