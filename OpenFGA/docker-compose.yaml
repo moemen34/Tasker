@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=PostgresMoemen
+      - POSTGRES_PASSWORD=password
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
@@ -29,7 +29,7 @@ services:
     command: migrate
     environment:
       - OPENFGA_DATASTORE_ENGINE=postgres
-      - OPENFGA_DATASTORE_URI=postgres://postgres:PostgresMoemen@postgres:5432/postgres?sslmode=disable
+      - OPENFGA_DATASTORE_URI=postgres://postgres:password@postgres:5432/postgres?sslmode=disable
     networks:
       - openfga
 
@@ -41,7 +41,7 @@ services:
     container_name: openfga
     environment:
       - OPENFGA_DATASTORE_ENGINE=postgres
-      - OPENFGA_DATASTORE_URI=postgres://postgres:PostgresMoemen@postgres:5432/postgres?sslmode=disable
+      - OPENFGA_DATASTORE_URI=postgres://postgres:password@postgres:5432/postgres?sslmode=disable
       - OPENFGA_LOG_FORMAT=json
     command: run
     networks:
