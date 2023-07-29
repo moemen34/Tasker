@@ -36,7 +36,7 @@ type task_folder
 
 
  # pic1
- ![My Remote Image]([https://www.dropbox.com/s/.../my-remote-image.jpg?dl=0](https://github.com/moemen34/pics/blob/main/pic1.png))
+ ![My Remote Image](https://github.com/moemen34/pics/blob/main/pic1.png)
  # pic2
 
 ### Inserting relationships:
