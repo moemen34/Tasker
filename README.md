@@ -36,7 +36,7 @@ On the webApp's navigation bar, there is an admin pannel that allows the upload 
 
 
  # pic1
- ![My Remote Image](https://github.com/moemen34/pics/blob/main/pic1.png)
+ ![My Remote Image](https://drive.google.com/file/d/12cSICxEyOwFgpbmBHxrG95Afxjt3mBoV/view?usp=sharing)
  # pic2
 
 ### Inserting relationships:
