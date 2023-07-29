@@ -35,31 +35,36 @@ type task_folder
 On the webApp's navigation bar, there is an admin pannel that allows the upload of an excel file with employees information, the excel file would have 5 colums (first name, last name, email, phone number, and password). After uploading the employees, and **owner** edge between the employee and their task_folder is created in OpenFGA. 
 
 
- # pic1
+ <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/bbd35184-5b4d-441f-ac05-1e96ea4d8621">
+
  <img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/14c2ccf4-141b-472a-a776-640985bf4348">
 
- # pic2
+
 
 ### Inserting relationships:
 Similarly, the admin has the ability to upload an excel file with employee relations, the file would have 3 columns (sourceID, destinationID, and relation). Such that the source and destination are the IDs of the employees.  
 Once uploaded, the equivalent edges are added to the OpenFGA store.
 
-# pic3
-# pic4
+
+<img width="1187" alt="pic3" src="https://github.com/moemen34/Tasker/assets/96449074/ee9e01eb-f298-45a9-974a-25cdf1a2c280">
+<img width="140" alt="pic4" src="https://github.com/moemen34/Tasker/assets/96449074/934f2e2b-1230-4e99-b896-c537c4eb3bf6">
+
 
 ### Viewing task folders:
 The webApp also allows the user to view task folders of their employees or boss(someone they assist). This is achieved by using a **List Check** from OpenFGA, this returns a list of all users with relationship *supervisor_plus* to the logged in user, or *assistant*.
 
-# pic5
-# pic6
+<img width="1175" alt="pic5" src="https://github.com/moemen34/Tasker/assets/96449074/4cc7749d-8cdf-4e3a-a45e-ae9f92c5889c">
+<img width="1147" alt="pic6" src="https://github.com/moemen34/Tasker/assets/96449074/6335b2df-2701-4d1c-b626-3dbe74beb93f">
+
 
 ### Viewing tasks:
 Users of the webapp can also view tasks they have the relationship *can_view* to as shown in the screenshot below.
 
-# pic7
+<img width="1148" alt="pic7" src="https://github.com/moemen34/Tasker/assets/96449074/380b4782-64bb-4f7a-b46c-605e03ef45ba">
+
 
 ### assigning tasks:
 Users also have the ability to assign tasks to users they have the relationship *can_assign* to their task folders.  
 As shown in the screenshot below, when assigning a task, the user can choose to select from all the possible assignees.
 
-# pic8
+<img width="470" alt="pic8" src="https://github.com/moemen34/Tasker/assets/96449074/3a7294c7-84ea-496d-a6dc-1068aff9290c">
