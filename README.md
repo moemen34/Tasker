@@ -66,4 +66,5 @@ Users of the webapp can also view tasks they have the relationship *can_view* to
 Users also have the ability to assign tasks to users they have the relationship *can_assign* to their task folders.  
 As shown in the screenshot below, when assigning a task, the user can choose to select from all the possible assignees.
 
-<img width="470" alt="pic8" src="https://github.com/moemen34/Tasker/assets/96449074/3a7294c7-84ea-496d-a6dc-1068aff9290c">
+<img width="481" alt="pic8" src="https://github.com/moemen34/Tasker/assets/96449074/f45b5aed-ad8b-48d7-bd31-ff989e111e3b">
+
