@@ -1,7 +1,7 @@
 # Tasker
 ## Description:
 Tasker is a prototype task assignment and management web application that allows it's users to assign tasks to each other deppending on their relationships.  
-To achieve this Relationship Based Access Control (ReBAC) and authorization, OpenFGA, an open source authorization sollution for developers was used.  
+To achieve this Relationship Based Access Control (ReBAC) and authorization, OpenFGA, an open source authorization solution was used.  
 The main purpose of this prototype application is to experiment with OpenFGA and it's solutions.
 ### Authorization Model:
 The authorization model below defines 3 types (employee, task, and task_folder):
@@ -32,11 +32,11 @@ type task_folder
 
 ## Implementation:
 ### Inserting employees:  
- On the webApp's navigation bar, there is an admin pannel that allows the upload of an excel file with employees information, the excel file would have 5 colums (first name, last name, email, phone number, and password). After uploading the employees, and **qwner** edge between the employee and their task_folder is created in OpenFGA. 
+On the webApp's navigation bar, there is an admin pannel that allows the upload of an excel file with employees information, the excel file would have 5 colums (first name, last name, email, phone number, and password). After uploading the employees, and **owner** edge between the employee and their task_folder is created in OpenFGA. 
 
 
  # pic1
- ![My Remote Image](https://drive.google.com/file/d/12cSICxEyOwFgpbmBHxrG95Afxjt3mBoV/view?usp=sharing)
+ ![My Remote Image](https://github.com/moemen34/pics/blob/main/pic1.png)
  # pic2
 
 ### Inserting relationships:
