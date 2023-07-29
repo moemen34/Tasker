@@ -15,8 +15,6 @@ CREATE TABLE relation(
     FOREIGN KEY (destination) REFERENCES employee (employee_id) on delete cascade
 );
 
---can I add viewer relation in OpenFGA  GO BACK TO THIS
-
 Create Table task(
     assigner INT NOT NULL, 
     task_id SERIAL,
