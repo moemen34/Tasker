@@ -34,7 +34,6 @@ type task_folder
 ### Inserting employees:  
 On the webApp's navigation bar, there is an admin pannel that allows the upload of an excel file with employees information, the excel file would have 5 colums (first name, last name, email, phone number, and password). After uploading the employees, and **owner** edge between the employee and their task_folder is created in OpenFGA. 
 
-
  <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/bbd35184-5b4d-441f-ac05-1e96ea4d8621">
 
  <img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/14c2ccf4-141b-472a-a776-640985bf4348">
@@ -63,7 +62,7 @@ Users of the webapp can also view tasks they have the relationship *can_view* to
 <img width="1148" alt="pic7" src="https://github.com/moemen34/Tasker/assets/96449074/380b4782-64bb-4f7a-b46c-605e03ef45ba">
 
 
-### assigning tasks:
+### Assigning tasks:
 Users also have the ability to assign tasks to users they have the relationship *can_assign* to their task folders.  
 As shown in the screenshot below, when assigning a task, the user can choose to select from all the possible assignees.
 
