@@ -128,7 +128,7 @@ const NewTask = ({ onClose }) => {
                             {/*header*/}
                             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                                 <h3 className="text-3xl font-semibold">
-                                    Modal Title
+                                    New Task
                                 </h3>
                                 <button
                                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -186,10 +186,10 @@ const NewTask = ({ onClose }) => {
                                 </div>
 
                                 {/* Selected ownerId values */}
-                                <div className="mt-4">
+                                {/*<div className="mt-4">
                                     <h2 className="text-lg font-semibold">Selected ownerId values:</h2>
                                     <p className="mt-1">{selectedOwnerIds.join(", ")}</p>
-                                </div>
+                                </div>*/}
 
 
                                 <br/>
