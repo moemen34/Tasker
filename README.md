@@ -36,7 +36,8 @@ On the webApp's navigation bar, there is an admin pannel that allows the upload 
 
 
  # pic1
- ![My Remote Image](https://drive.google.com/file/d/12cSICxEyOwFgpbmBHxrG95Afxjt3mBoV/view?usp=sharing)
+ <img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/14c2ccf4-141b-472a-a776-640985bf4348">
+
  # pic2
 
 ### Inserting relationships:
