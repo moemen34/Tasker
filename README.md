@@ -37,7 +37,10 @@ On the webApp's navigation bar, there is an admin pannel that allows the upload 
  <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/bbd35184-5b4d-441f-ac05-1e96ea4d8621">
 
  <img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/14c2ccf4-141b-472a-a776-640985bf4348">
+ 
+ <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/f0e32611-bfad-43f0-9d78-ca2fa2482023">
 
+<img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/0fd9d0f1-28a6-43a8-85e3-7140ff5252af">
 
 
 ### Inserting relationships:
@@ -45,26 +48,26 @@ Similarly, the admin has the ability to upload an excel file with employee relat
 Once uploaded, the equivalent edges are added to the OpenFGA store.
 
 
-<img width="1187" alt="pic3" src="https://github.com/moemen34/Tasker/assets/96449074/ee9e01eb-f298-45a9-974a-25cdf1a2c280">
-<img width="140" alt="pic4" src="https://github.com/moemen34/Tasker/assets/96449074/934f2e2b-1230-4e99-b896-c537c4eb3bf6">
-
+<img width="1187" alt="pic3" src="https://github.com/moemen34/Tasker/assets/96449074/1552cc70-db27-4eec-a229-afe72f8e77fc">
+<img width="140" alt="pic4" src="https://github.com/moemen34/Tasker/assets/96449074/54e0efb9-2d26-4a46-88f3-409505731a63">
 
 ### Viewing task folders:
 The webApp also allows the user to view task folders of their employees or boss(someone they assist). This is achieved by using a **List Check** from OpenFGA, this returns a list of all users with relationship *supervisor_plus* to the logged in user, or *assistant*.
 
-<img width="1175" alt="pic5" src="https://github.com/moemen34/Tasker/assets/96449074/4cc7749d-8cdf-4e3a-a45e-ae9f92c5889c">
-<img width="1147" alt="pic6" src="https://github.com/moemen34/Tasker/assets/96449074/6335b2df-2701-4d1c-b626-3dbe74beb93f">
+<img width="1175" alt="pic5" src="https://github.com/moemen34/Tasker/assets/96449074/ea6f26c0-483e-43b2-934a-61ff75245464">
+<img width="1147" alt="pic6" src="https://github.com/moemen34/Tasker/assets/96449074/7fb0dc02-66de-4cfe-97cb-38ac38a2bede">
+
 
 
 ### Viewing tasks:
 Users of the webapp can also view tasks they have the relationship *can_view* to as shown in the screenshot below.
 
-<img width="1148" alt="pic7" src="https://github.com/moemen34/Tasker/assets/96449074/380b4782-64bb-4f7a-b46c-605e03ef45ba">
+<img width="1148" alt="pic7" src="https://github.com/moemen34/Tasker/assets/96449074/df855b67-f902-44e4-aeee-812266076d93">
 
 
 ### Assigning tasks:
 Users also have the ability to assign tasks to users they have the relationship *can_assign* to their task folders.  
 As shown in the screenshot below, when assigning a task, the user can choose to select from all the possible assignees.
 
-<img width="481" alt="pic8" src="https://github.com/moemen34/Tasker/assets/96449074/f45b5aed-ad8b-48d7-bd31-ff989e111e3b">
 
+<img width="481" alt="pic8" src="https://github.com/moemen34/Tasker/assets/96449074/c9dbd8d5-1b1a-4d9d-a2a9-a9fbe0fa1f16">
