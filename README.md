@@ -34,9 +34,6 @@ type task_folder
 ### Inserting employees:  
 On the webApp's navigation bar, there is an admin pannel that allows the upload of an excel file with employees information, the excel file would have 5 colums (first name, last name, email, phone number, and password). After uploading the employees, and **owner** edge between the employee and their task_folder is created in OpenFGA. 
 
- <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/bbd35184-5b4d-441f-ac05-1e96ea4d8621">
-
- <img width="141" alt="pic1" src="https://github.com/moemen34/Tasker/assets/96449074/14c2ccf4-141b-472a-a776-640985bf4348">
  
  <img width="1181" alt="pic2" src="https://github.com/moemen34/Tasker/assets/96449074/f0e32611-bfad-43f0-9d78-ca2fa2482023">
 
